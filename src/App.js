@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import { del } from "framer-motion/client";
 
 function App() {
   useEffect(() => {
@@ -11,6 +10,8 @@ function App() {
   const [position, setPosition] = useState({ left: 0, top: 0 });
   const [clicked, setClicked] = useState(false);
   const [deleteAll, setDeleteAll] = useState(false);
+  const [glowUp, setGlowUp] = useState(false);
+  let glowTimeout = null;
   const move = () => {
     const buttonWidth = 110;
     const buttonHeight = 70;
@@ -46,6 +47,16 @@ function App() {
   const disappear = () => {
     setDeleteAll(true);
   };
+  const handleMouseEnter = () => {
+    // if (glowTimeout) clearTimeout(glowTimeout); // nếu đang có timer mờ thì hủy
+    setGlowUp(true);
+  };
+
+  const handleMouseLeave = () => {
+    glowTimeout = setTimeout(() => {
+      setGlowUp(false);
+    }, 500);
+  };
   return (
     <div className="wrap">
       <video
@@ -53,22 +64,28 @@ function App() {
         muted
         loop
         playsInline
-        className={`video ${deleteAll ? "delete" : ""}`}
+        className={`video ${deleteAll ? "deleteAll" : ""}`}
       >
         <source src="/video/falling snow.mp4" type="video/mp4" />
       </video>
-      {/* <img src="/img/heart.png" alt="heart" /> */}
+      <img src="/img/heart.png" alt="heart" />
       <p className={`question ${clicked ? "hide" : ""}`}>Do you love me ?</p>
       <div className={`show-love-text ${clicked ? "" : "hide"}`}>
-        {/* <div className="wing">꧁𓇼꙳•̩̩͙❅*̩̩͙‧͙ </div> */}
+        <div className="wing">꧁𓇼꙳•̩̩͙❅*̩̩͙‧͙ </div>
         <div className="love-content">
-          {/* <div className="love-text">I love you too!</div> */}
-          <div className="love-name">𓆝 𓆟 Tấn Tài 𓆝 𓆟</div>
+          <div className="love-text">I love you too!</div>
+          <div
+            className={`love-name ${glowUp ? "glowUp" : ""}`}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            𓆝 𓆟 Ngọc Trâm 𓆝 𓆟
+          </div>
           <div className="fish" onClick={disappear}>
             &#x1F420;
           </div>
         </div>
-        {/* <div className="wing"> ‧͙*̩̩͙❆ ͙˚•̩̩͙⋆𓇼꧂</div> */}
+        <div className="wing"> ‧͙*̩̩͙❆ ͙˚•̩̩͙⋆𓇼꧂</div>
       </div>
       <div className={`button-group ${clicked ? "hide" : ""}`}>
         <button className="click-button" onClick={onYes}>

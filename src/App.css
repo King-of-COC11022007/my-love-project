@@ -82,7 +82,7 @@ img {
   position: absolute;
   z-index: 2;
   width: 880px;
-  margin: 0 30px 0 0;
+  margin: 0 30px 20px 0;
 }
 .bg-video {
   width: 100%;
@@ -96,7 +96,7 @@ img {
   object-fit: cover;
   padding: 0 10px 0 0;
 }
-.delete {
+.deleteAll {
   z-index: 10;
 }
 .show-love-text {
@@ -105,7 +105,7 @@ img {
   align-items: center;
   gap: 100px;
   user-select: none;
-  transition: 0.5s;
+  transition: filter 1.5s ease, color 1.5s ease, background 1.5s ease;
 }
 .love-name {
   font-size: 55px;
@@ -114,14 +114,29 @@ img {
   font-style: italic;
   font-family: "Comic Sans MS", cursive, sans-serif;
   margin: 0 0 10px 0;
-  filter: drop-shadow(4px 4px 3px rgb(242, 245, 69));
-  background-image: linear-gradient(to right, white, rgb(81, 184, 232), white);
+  transition: 4s;
+  color: #00000085;
+  filter: drop-shadow(0px -3px 2px rgb(240, 241, 224));
+}
+.glowUp {
+  filter: drop-shadow(0px -2px 3px rgb(242, 245, 69))
+    drop-shadow(0px -3px 3px #fcf8f8b7) drop-shadow(0px 0px 10px #6ec3c9)
+    drop-shadow(0px 0px 20px #6ec3c9) drop-shadow(0px 0px 50px #fff672)
+    drop-shadow(12px 10px 6px rgb(30, 29, 29));
+  background-image: linear-gradient(
+    to right,
+    #fffafa,
+    #6ec3c9,
+    #005586,
+    #83c75d,
+    #8c63a4,
+    #fffafa
+  );
   background-clip: text;
   color: transparent;
   background-size: 300%;
   background-position: 250%;
-  animation: animatedText 3s infinite;
-  z-index: 10;
+  animation: animatedText 8s infinite;
 }
 @keyframes animatedText {
   to {
@@ -133,7 +148,9 @@ img {
   font-size: 60px;
   font-weight: 1000;
   letter-spacing: 5px;
-  text-shadow: -1px -4px 5px rgb(245, 179, 221);
+  text-shadow: -1px -4px 4px rgb(244, 192, 225), 0px 0px 10px #ff4cae,
+    0px 0px 20px #ff4cae, 12px 10px 6px rgb(30, 29, 29);
+  color: #ff4cae;
 }
 
 .wing {
@@ -160,5 +177,4 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
 }
